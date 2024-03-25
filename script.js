@@ -1,4 +1,22 @@
 let modalArea = false; // Changed var to let
+// Load preloader HTML file dynamically
+window.addEventListener('DOMContentLoaded', () => {
+    fetch('preloader.html')
+        .then(response => response.text())
+        .then(html => {
+            // Insert the preloader HTML into the document
+            document.body.insertAdjacentHTML('afterbegin', html);
+            
+            // Hide the preloader once the page is loaded
+            window.addEventListener('load', () => {
+                const preloader = document.getElementById('preloader');
+                preloader.style.display = 'none';
+            });
+        })
+        .catch(error => {
+            console.error('Error loading preloader:', error);
+        });
+});
 
 function toggleModal(modalOpen) { // Changed parameter name
     if (modalOpen === true) {
