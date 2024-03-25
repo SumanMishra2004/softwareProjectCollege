@@ -1,0 +1,473 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Kolker+Brush&family=Love+Light&display=swap");
+
+::-webkit-scrollbar {
+  width: 0;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  height: 100vh;
+  width: 100vw;
+  background: url(./assets/supermarket.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.fullbodycontainer {
+  height: 100%;
+  width: 100%;
+  background: rgb(10, 10, 10);
+  background: radial-gradient(
+    circle,
+    rgba(10, 10, 10, 1) 0%,
+    rgba(246, 241, 241, 0.09625826383891856) 0%,
+    rgba(7, 7, 7, 1) 110%
+  );
+  z-index: 5;
+}
+.navContainer {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  height: 100%;
+  width: 100%;
+}
+.navigation {
+  margin-top: 5rem;
+  position: relative;
+  min-width: 520px;
+  min-height: 100px;
+  border-radius: 30px;
+  background: #2f363e;
+  box-shadow: 25px 25px 75px rgba(0, 0, 0, 0.25),
+    10px 10px 70px rgba(0, 0, 0, 0.25), inset 5px 5px 10px rgba(0, 0, 0, 0.5),
+    inset 5px 5px 20px rgba(255, 255, 255, 0.2),
+    inset -5px -5px 15px rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navigation li {
+  position: relative;
+  list-style: none;
+  width: 104px;
+  margin: 0 5px;
+}
+
+.navigation li::before {
+  content: "";
+  position: absolute;
+  top: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #222;
+  transition: 0.5s;
+}
+
+.navigation li.active::before {
+  background: #ff4463;
+  box-shadow: 0 0 5px #ff4463, 0 0 10px #ff4463, 0 0 20px #ff4463,
+    0 0 30px #ff4463, 0 0 40px #ff4463, 0 0 50px #ff4463;
+}
+
+.navigation li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-decoration: none;
+}
+
+.navigation li a .icon {
+  position: absolute;
+  font-size: 1.75em;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  color: #aaa;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+  transition-delay: 0.2s;
+}
+
+.navigation li.active a .icon {
+  transform: translateY(-55px);
+  background: #ff4463;
+  color: #c6c6c6;
+  box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.25),
+    inset 2px 2px 3px rgba(255, 255, 255, 0.25),
+    inset -3px -3px 5px rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition-delay: 0s;
+}
+
+.navigation li.active a .icon i {
+  z-index: 22;
+}
+
+.navigation li a .icon::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  background: #2f363e;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5),
+    inset 2px 2px 3px rgba(255, 255, 255, 0.25),
+    inset -3px -3px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  transform: scale(0);
+  transition: 0.5s;
+}
+
+.navigation li.active a .icon::before {
+  transform: scale(1);
+}
+
+.navigation li a .text {
+  position: absolute;
+  font-size: 0.75em;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.5s;
+  padding: 2px 10px;
+  background: #fff;
+  border-radius: 15px;
+  color: #2f363e;
+  box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.25),
+    inset -3px -3px 5px rgba(0, 0, 0, 0.5);
+  transition-delay: 0s;
+}
+
+.navigation li.active a .text {
+  opacity: 1;
+  transform: translateY(10px);
+  transition-delay: 0.2s;
+}
+
+@media screen and (max-width: 668px) {
+  .navigation {
+    min-width: 100%;
+  }
+  .navigation li {
+    width: 80px;
+  }
+  .navigation li a .icon {
+    height: 80px;
+    width: 80px;
+    font-size: 19px;
+  }
+}
+
+.modalContainer {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  backdrop-filter: blur(7px) saturate(162%);
+  -webkit-backdrop-filter: blur(7px) saturate(162%);
+  background-color: rgba(17, 25, 40, 0.63);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.125);
+  animation: modalopen 1s ease-in-out;
+  z-index: 100;
+}
+@keyframes modalopen {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.25;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.hideBar {
+  color: white;
+  font-size: 3rem;
+  font-family: "Dancing Script", cursive;
+  text-align: end;
+  padding-right: 2rem;
+  padding-top: 0.7rem;
+  cursor: pointer;
+}
+svg {
+  width: 65vw;
+  position: relative;
+
+  height: 60vh;
+  margin: 0 auto;
+  display: block;
+}
+svg line {
+  stroke-width: 2px;
+  stroke: rgba(2, 162, 239, 1);
+}
+svg #svg_2 {
+  stroke-dasharray: 1680;
+  stroke-dashoffset: 1680;
+}
+svg #svg_4 {
+  stroke-dasharray: 1680;
+  stroke-dashoffset: -280;
+}
+svg #svg_3 {
+  stroke-dasharray: 1680;
+  stroke-dashoffset: -580;
+}
+svg #svg_5 {
+  stroke-dasharray: 1680;
+  stroke-dashoffset: -280;
+}
+@keyframes anim-dash {
+  90% {
+    stroke: rgba(2, 162, 239, 1);
+  }
+  100% {
+    stroke: rgba(17, 25, 40, 0.18);
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: -999;
+}
+.modal {
+  position: absolute;
+  border-radius: 5px;
+  overflow: hidden;
+  width: 65vw;
+  height: 60vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.modal-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 65vw;
+  height: 60vh;
+  backdrop-filter: blur(21px) saturate(180%);
+  -webkit-backdrop-filter: blur(21px) saturate(180%);
+  background-color: rgba(136, 147, 166, 0.48);
+
+  opacity: 0;
+}
+.modal-close {
+  float: right;
+  z-index: +2;
+  color: #faf8f8;
+  margin: 12px 12px 0 0;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  line-height: 20px;
+  height: 20px;
+  width: 20px;
+}
+
+.overlay:target .modal,
+.overlay:target {
+  animation: display 0.6s forwards;
+  z-index: auto;
+}
+.overlay:target .modal svg line {
+  animation: anim-dash 0.6s forwards;
+  animation-delay: 0.6s;
+}
+.overlay:target .modal .modal-inner {
+  animation: display 0.6s forwards;
+  animation-delay: 1s;
+}
+@keyframes display {
+  to {
+    opacity: 1;
+  }
+}
+
+.cards {
+  width: 100%;
+  display: flex;
+  height: 92%;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+  overflow: auto;
+}
+
+.card {
+  margin-bottom: 3rem;
+  height: 60%;
+  width: 200px;
+  overflow: hidden;
+  background: #b9b2b2;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px,
+    rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+  border-radius: 10px;
+  transition: background 0.5s, opacity 0.5s; /* Adding transition for background and opacity */
+}
+
+.card__img {
+  height: 80%;
+  width: 88%;
+  margin: 2% 6%;
+  border-radius: 10px;
+}
+
+.card__info {
+ 
+  padding-left: 5px;
+}
+
+.card:hover {
+  background: url("./assets/myimage.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 1;
+}
+
+.card:hover > .card__img {
+  display: none;
+}
+.card__title {
+  transform: perspective(500px) rotateY(20deg); /* Apply perspective and rotation */
+  color: rgb(3, 3, 3); /* Example color */
+  font-size: 22px;
+  font-family: "Kaushan Script", cursive;
+  text-shadow: 0 0 3px #ff0000, 0 0 5px #0000ff;
+  letter-spacing: 3px;
+}
+
+.logo {
+  font-family: "Love Light", cursive;
+  font-weight: 400;
+  letter-spacing: 5px;
+  font-style: normal;
+  color: rgb(250, 236, 236);
+  position: absolute;
+  text-align: center;
+  animation: logoComing 2.5s ease forwards;
+  transform-origin: center;
+  text-shadow: 0 0 5px #bfa2e5, 0 0 10px #fff, 0 0 15px #0073e6,
+    0 0 20px #0073e6, 0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6;
+}
+
+@keyframes logoComing {
+  0% {
+    font-size: 0vw;
+    top: -4rem;
+    transform: translateY(0) rotateY(0deg);
+    perspective: 0;
+    opacity: 0;
+  }
+  50% {
+    font-size: 11vw;
+
+    transform: translateY(-5rem) rotateY(180deg);
+    opacity: 0.75;
+  }
+  100% {
+    font-size: 20vw;
+    top: 25rem;
+    transform: translateY(-10rem) rotateY(360deg);
+    perspective: 300px;
+    opacity: 1;
+  }
+}
+
+.bodyModalMy {
+  
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+align-items: center;
+  & > span {
+    padding-top: 3px;
+    font-size: xx-large;
+    color: #f9f3f3;
+    position: absolute;
+  top: 3%;
+    text-align: center;
+  }
+  & > .ModalNav {
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    width: 85%;
+    border-radius: 15px;
+    height: 4rem;
+    overflow: hidden;
+    margin-top: 1rem;
+    background-color: #9090dde3;
+    &>ul{
+      display: flex;
+      flex-direction: row;
+      overflow-y: auto;
+      flex-wrap: nowrap;
+      margin-left: 2rem;
+      width: 100%;
+      &>.activeNavEle{
+        color: red !important;
+      }
+      &>li{
+        width: 190px;
+        white-space: nowrap;
+        list-style: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-right: 4rem;
+    padding-top: 1rem;
+      }
+    }
+
+  }
+  &>.imagebody{
+    margin-top: 1rem;
+    height: 72vh;
+    width: 97%;
+    background: rgba(251, 251, 251, 0.25);
+
+  }
+}
+
+
+.diagramImage{
+  height: 90%;
+  width: 90%;
+  overflow: scroll;
+  position: relative;
+  background: url("./assets/dfd.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
