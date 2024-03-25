@@ -1,6 +1,8 @@
 let modalArea = false; // Changed var to let
 // Load preloader HTML file dynamically
 window.addEventListener('DOMContentLoaded', () => {
+    
+    // mainContainer.style.display = "none"
     fetch('preloader.html')
         .then(response => response.text())
         .then(html => {
@@ -11,6 +13,7 @@ window.addEventListener('DOMContentLoaded', () => {
             window.addEventListener('load', () => {
                 const preloader = document.getElementById('preloader');
                 preloader.style.display = 'none';
+                
             });
         })
         .catch(error => {
